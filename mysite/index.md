@@ -3,13 +3,22 @@ layout: default
 title: Home
 ---
 
-<section class="hero">
-  <h1>Connecting people, spaces, and data to power the places where people work best together</h1>
-  <div class="cta-buttons">
-    <a href="#" class="btn btn-primary">See a demo</a>
-    <a href="#" class="btn btn-secondary">Start free trial</a>
+<section class="profile-section">
+  <div class="image-container">
+    <img src="/assets/images/profile.jpg" alt="Mehul Shetty">
+  </div>
+  <div class="text-content">
+    <h1>Hi, I'm Mehul. <br> <br> I craft innovative solutions at the intersection of data and technology.</h1>
   </div>
 </section>
+
+<section class="hero">
+  <div class="cta-buttons">
+    <a href="#" class="btn btn-contact">Contact</a>
+    <a href="#" class="btn btn-resume">Resume</a>
+  </div>
+</section>
+
 
 <section class="projects">
   <div class="container">
