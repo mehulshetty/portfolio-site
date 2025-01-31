@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <script src="https://kit.fontawesome.com/0c46a6778c.js" crossorigin="anonymous"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const swiper = new Swiper('.projects-carousel', {
+        slidesPerView: 3, // Show three items at a time
+        spaceBetween: 100, // Space between slides (in pixels)
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        loop: false,
+        breakpoints: {
+          // Adjust for smaller screens
+          1024: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          480: {
+            slidesPerView: 1,
+          },
+        },
+      });
+    });
+  </script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const waveDivider = document.querySelector('.wave-divider');
+      const waveSection = document.querySelector('.wave-section');
+      const waveSectionTop = waveSection.getBoundingClientRect().top;
+  
+      // If the wave section has reached the top of the viewport
+      if (waveSectionTop <= 0) {
+        // Make the wave divider “stick” to the top of the wave-section
+        waveDivider.style.position = 'absolute';
+        // Place it exactly at the top of the wave-section in the page
+        waveDivider.style.top = waveSection.offsetTop + 'px';
+        waveDivider.style.bottom = 'auto';
+      } else {
+        // Otherwise, keep it fixed at the bottom of the screen
+        waveDivider.style.position = 'fixed';
+        waveDivider.style.bottom = '0';
+        waveDivider.style.top = 'auto';
+      }
+    });
+  </script>  
 </head>
 <body>
   {% include header.html %}

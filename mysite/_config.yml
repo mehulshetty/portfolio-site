@@ -29,7 +29,23 @@ sass:
   style: compressed
 
 collections:
-  - posts
+  projects:
+    output: true
+    permalink: /projects/:path/
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
 
 permalink: pretty
 theme: null               # Disable the minima theme
