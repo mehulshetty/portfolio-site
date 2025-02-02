@@ -536,9 +536,126 @@ header {
   display: block;
 }
 
+/* ---------------------------------
+   11. Form
+--------------------------------- */
+
+.form-section {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px 20px;
+  z-index: 5;
+  position: relative;
+
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+  h2 {
+    font-size: 50px;
+    font-weight: 600;
+    font-family: 'Sofia Pro', sans-serif;
+    color: #ff4444;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 30px;  /* Increased gap for better separation */
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 0; /* Ensures proper shrinking behavior */
+}
+
+.form-group::before,
+.form-group::after {
+  content: none !important;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-family: 'Sofia Pro', sans-serif;
+  color: #333;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+input,
+textarea {
+  z-index: 1; /* Ensure input layer stays on top */
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #fff; /* Ensures input is visibly separate from background */
+}
+
+input:focus,
+textarea:focus {
+  border-color: #ff4444;
+  outline: none;
+}
+
+textarea {
+  min-height: 200px;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.required {
+  color: #ff4444;
+}
+
+button[type="submit"] {
+  background-color: #ff4444;
+  color: white;
+  padding: 18px 50px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  form {
+    padding: 30px 20px;
+  }
+}
+
+
 
 /* ---------------------------------
-   11. MEDIA QUERIES
+   12. MEDIA QUERIES
 --------------------------------- */
 @media (max-width: 768px) {
   header nav ul.menu {

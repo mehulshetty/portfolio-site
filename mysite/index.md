@@ -19,7 +19,7 @@ title: Home
   </div>
 </section>
 
-<section class="projects-section">
+<section class="projects-section" id="projects">
   <div class="container">
     <div class="title-area">
       <h2 style="color:orange;">Check Out Some of My Past Projects</h2>
@@ -113,3 +113,34 @@ My journey started at Marist, where I didn’t just ace my CS degree (Summa Cum 
     </svg>
   </div>
 </section>
+
+<section class="form-section">
+  <form action="https://formspree.io/f/xdkazdqd" method="POST">
+  <h2>Let's Get In Touch</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First name <span class="required">*</span></label>
+        <input type="text" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label>Last name <span class="required">*</span></label>
+        <input type="text" name="lastName" required>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Email <span class="required">*</span></label>
+      <input type="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+      <label>Message <span class="required">*</span></label>
+      <textarea name="message" required></textarea>
+    </div>
+    
+    <div class="form-submit">
+      <button type="submit">Send Message</button>
+    </div>
+  </form>
+</section>
+
