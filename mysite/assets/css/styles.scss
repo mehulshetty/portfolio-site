@@ -286,7 +286,7 @@ header {
 .hero {
   position: relative;
   margin-top: -130px; /* Overlap the section above */
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero .cta-buttons {
@@ -361,6 +361,8 @@ header {
 .projects-section .title-area {
   justify-items: left;
   margin-left: 2rem;
+  position: relative;
+  z-index: 2;
   h2 {
     font-size: 3rem;
     font-weight: 600;
@@ -474,6 +476,7 @@ header {
   color: white;
   padding: 4rem 2rem;
   position: relative;
+  z-index: 0;
 }
 
 .wave-section .content {
@@ -508,15 +511,28 @@ header {
 }
 
 /* Wave divider styling */
-.wave-divider {
-  position: absolute;
-  bottom: -1px; /* Ensures no gap between sections */
+.wave-divider-top {
+  position: fixed;
+  bottom: 0;
   left: 0;
   width: 100%;
-  z-index: -1;
+  z-index: 1;
+  transition: top 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.wave-divider svg {
+.wave-divider-top svg {
+  display: block;
+}
+
+.wave-divider-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  transition: bottom 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.wave-divider-bottom svg {
   display: block;
 }
 

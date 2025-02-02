@@ -24,6 +24,7 @@
           prevEl: '.swiper-button-prev',
         },
         loop: false,
+        
         breakpoints: {
           // Adjust for smaller screens
           1024: {
@@ -40,26 +41,40 @@
     });
   </script>
   <script>
-    window.addEventListener('scroll', () => {
-      const waveDivider = document.querySelector('.wave-divider');
+    document.addEventListener('DOMContentLoaded', function() {
+      const waveDivider = document.querySelector('.wave-divider-top');
       const waveSection = document.querySelector('.wave-section');
-      const waveSectionTop = waveSection.getBoundingClientRect().top;
+      let isLocked = false;
   
-      // If the wave section has reached the top of the viewport
-      if (waveSectionTop <= 0) {
-        // Make the wave divider “stick” to the top of the wave-section
-        waveDivider.style.position = 'absolute';
-        // Place it exactly at the top of the wave-section in the page
-        waveDivider.style.top = waveSection.offsetTop + 'px';
-        waveDivider.style.bottom = 'auto';
-      } else {
-        // Otherwise, keep it fixed at the bottom of the screen
-        waveDivider.style.position = 'fixed';
-        waveDivider.style.bottom = '0';
-        waveDivider.style.top = 'auto';
+      function updateDividerPosition() {
+        const sectionRect = waveSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+  
+        // When wave-section top reaches the bottom of the viewport
+        if (sectionRect.top <= viewportHeight && !isLocked) {
+          // Lock to the top of wave-section
+          waveDivider.style.position = 'absolute';
+          waveDivider.style.top = `-300px`;
+          waveDivider.style.bottom = '0px';
+          isLocked = true;
+        } 
+        // When wave-section exits upwards
+        else if (sectionRect.top > viewportHeight && isLocked) {
+          // Return to fixed at bottom
+          waveDivider.style.position = 'fixed';
+          waveDivider.style.top = 'auto';
+          waveDivider.style.bottom = '0';
+          isLocked = false;
+        }
       }
+  
+      window.addEventListener('scroll', updateDividerPosition);
+      window.addEventListener('resize', updateDividerPosition);
+      updateDividerPosition(); // Initial check
     });
-  </script>  
+  </script>
+       
+  
 </head>
 <body>
   {% include header.html %}
