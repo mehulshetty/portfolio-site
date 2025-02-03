@@ -4,11 +4,8 @@ title: Home
 ---
 
 <section class="profile-section">
-  <div class="image-container">
-    <img src="/assets/images/profile.jpg" alt="Mehul Shetty">
-  </div>
   <div class="text-content">
-    <h1>Hi, I'm Mehul. <br><br>I craft innovative solutions at the intersection of data and technology.</h1>
+    <h1>Hi, I'm Mehul.<br><br>I craft innovative solutions at the intersection of data and technology.</h1>
   </div>
 </section>
 
@@ -22,7 +19,7 @@ title: Home
 <section class="projects-section" id="projects">
   <div class="container">
     <div class="title-area">
-      <h2 style="color:orange;">Check Out Some of My Past Projects</h2>
+      <h2 style="color:#ff4444;">Check Out Some of My Past Projects</h2>
     </div>
 
     <!-- Swiper Container -->

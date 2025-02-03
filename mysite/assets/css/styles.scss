@@ -238,7 +238,7 @@ header {
 .profile-section {
   display: flex; /* Flexbox for layout */
   align-items: center; /* Vertically center content */
-  justify-content: space-between; /* Space between text and image */
+  justify-content: center; /* Space between text and image */
   padding: 4rem 7rem; /* Increased padding for left and right */
   background-color: #f9f9f9; /* Light background for contrast */
 
@@ -248,6 +248,7 @@ header {
     text-align: left;
     word-spacing: 0.05em; /* Subtle spacing between words */
     z-index: 5;
+    min-height: 33vh;
 
     h1 {
       font-size: 3rem;
@@ -257,26 +258,21 @@ header {
       line-height: 1.2; /* Balanced line height */
     }
   }
+}
 
-  .image-container {
-    position: relative;
-    width: 220px; /* Slightly larger size for emphasis */
-    height: 260px; /* Adjusted height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #3f4450;
+  vertical-align: bottom;
+  margin-left: 2px;
+  animation: blink 0.7s steps(1) infinite;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures the image scales properly */
-      border-radius: 50% / 45%; /* Slightly ovular */
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
-      border: none;
-      background: linear-gradient(135deg, #62CFF4, #FFD3AC);
-      padding: 5px; /* Space between gradient and image */
-    }
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
 
