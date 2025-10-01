@@ -13,6 +13,14 @@ export default function Research() {
     const examples = Array.from(q('.example')) as HTMLElement[]
     if (!stage || examples.length < 2) return
 
+    // Disable animations on mobile screens
+    const isMobile = window.innerWidth <= 700
+    if (isMobile) {
+      // Show both examples stacked on mobile
+      gsap.set(examples, { x: 0, opacity: 1, position: 'relative' })
+      return
+    }
+
     const width = () => (stage?.clientWidth ?? window.innerWidth)
 
     // Initial positions
@@ -58,7 +66,7 @@ export default function Research() {
   }, [])
 
   return (
-    <section ref={rootRef} className="research-section" id="examples" aria-labelledby="band-examples-title">
+    <section ref={rootRef} className="research-section" id="research" aria-labelledby="band-examples-title">
       <div className="research-frame">
         {/* Top row: full-bleed yellow banner (about half of remaining space) */}
         <div className="research-banner">
@@ -72,7 +80,7 @@ export default function Research() {
               <div className="title-chip title-chip--orange">POIFormer: A Transformer-Based Framework for Accurate and Scalable Point-of-Interest Attribution</div>
             </div>
             <div className="example__media">
-              <img src="/assets/poiformer.png" alt="POIFormer preview" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/poiAttr.png`} alt="POIFormer preview" loading="lazy" />
             </div>
             <div className="example__content">
               <h3 className="sr-only">POIFormer: A Transformer-Based Framework for POI Attribution</h3>
@@ -88,12 +96,12 @@ export default function Research() {
               <div className="title-chip title-chip--blue">Quantifying Symptom Causality in Clinical Decision Making: An Exploration Using CausaLM</div>
             </div>
             <div className="example__media">
-              <img src="https://picsum.photos/seed/anton/800/600" alt="Quantifying Symptom Causality preview" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/causalLM.png`} alt="Quantifying Symptom Causality preview" loading="lazy" />
             </div>
             <div className="example__content">
               <h3 className="sr-only">Quantifying Symptom Causality in Clinical Decision Making</h3>
               <p className="example__desc">
-                Current machine learning approaches to medical diagnosis often rely on correlational patterns between symptoms and diseases, risking misdiagnoses when symptoms are ambiguous or common across multiple conditions. In this work, we move beyond correlation to investigate the causal influence of key symptoms—specifically "chest pain"—on diagnostic predictions. Leveraging the CausaLM framework, we generate counterfactual text representations in which target concepts are effectively "forgotten" enabling a principled estimation of the causal effect of that concept on a model's predicted disease distribution...
+                Current machine learning approaches to medical diagnosis often rely on correlational patterns between symptoms and diseases, risking misdiagnoses when symptoms are ambiguous or common across multiple conditions. In this work, we move beyond correlation to investigate the causal influence of key symptoms—specifically "chest pain"—on diagnostic predictions. Leveraging the CausaLM framework, we generate counterfactual text representations in which target concepts are effectively "forgotten"...
               </p>
               <a className="pill pill--cta example__btn" href="https://arxiv.org/abs/2503.19394" aria-label="Read research paper">Read paper</a>
             </div>

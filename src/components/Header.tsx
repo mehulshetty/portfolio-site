@@ -86,11 +86,11 @@ export default function Header() {
         <span className="brand-dot" aria-hidden="true">MS</span>
       </div>
       <nav className="pill-nav" aria-label="Site">
-        <a href="#solutions" className="pill">About</a>
-        <a href="#examples" className="pill">Research</a>
-        <a href="#templates" className="pill">Off Time</a>
-        <a href="#devices" className="pill">Experience</a>
-        <a href="#pricing" className="pill">Contact</a>
+        <a href="#about" className="pill">About</a>
+        <a href="#research" className="pill">Research</a>
+        <a href="#experience" className="pill">Experience</a>
+        <a href="#offtime" className="pill">Off Time</a>
+        <a href="#contact" className="pill">Contact</a>
       </nav>
     </header>
   )

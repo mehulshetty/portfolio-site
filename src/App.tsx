@@ -1,11 +1,9 @@
-import React from 'react'
 import Header from './components/Header'
-import Hero from './components/Hero'
+import About from './components/About'
 import Research from './components/Research'
-import BuildBetter from './components/BuildBetter'
-import Devices from './components/Devices'
-import ActionFeatures from './components/ActionFeatures'
-import Pricing from './components/Pricing'
+import Experience from './components/Experience'
+import OffTime from './components/OffTime'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 
@@ -16,12 +14,21 @@ export default function App() {
       <CustomCursor />
       <Header />
       <main id="main" tabIndex={-1}>
-        <Hero />
+        <About />
         <Research />
-        <BuildBetter />
-        <Devices />
-        <ActionFeatures />
-        <Pricing />
+
+        {/* Experience Intro Banner */}
+        <section className="experience-intro-section">
+          <div className="experience-intro-banner">
+            <h2 className="experience-intro-title">
+              Here's what I've been up to <mark className="hl hl--blue">lately</mark>
+            </h2>
+          </div>
+        </section>
+
+        <Experience />
+        <OffTime />
+        <Contact />
         <Footer />
       </main>
     </>

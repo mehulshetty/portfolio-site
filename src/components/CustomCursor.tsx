@@ -12,40 +12,47 @@ export default function CustomCursor() {
     const el = elRef.current!
     // start hidden until user moves pointer
     el.classList.add('is-hidden')
-    // Smooth follow using quickTo
-    const xTo = gsap.quickTo(el, 'x', { duration: 0.10, ease: 'power3.out' })
-    const yTo = gsap.quickTo(el, 'y', { duration: 0.10, ease: 'power3.out' })
 
-    const onMove = (e: PointerEvent) => {
+    // Cache hover selectors for better performance
+    const hoverSelectors = 'a, button, [role="button"], .pill, .cta-big, .hover-target, .switch'
+    let isCurrentlyHover = false
+
+    const onMove = (e: MouseEvent) => {
       el.classList.remove('is-hidden')
-      xTo(e.clientX)
-      yTo(e.clientY)
 
+      // Move cursor immediately with no animation delay
+      // Use left/top instead of x/y to work with CSS translate(-50%, -50%)
+      el.style.left = e.clientX + 'px'
+      el.style.top = e.clientY + 'px'
+
+      // Throttle hover detection to improve performance
       const target = e.target as Element | null
-      const isHover = !!target?.closest('a, button, [role="button"], .pill, .cta-big, .hover-target, .switch')
-      el.classList.toggle('is-hover', isHover)
+      const isHover = !!target?.closest(hoverSelectors)
+      if (isHover !== isCurrentlyHover) {
+        isCurrentlyHover = isHover
+        el.classList.toggle('is-hover', isHover)
+      }
     }
 
     const onDown = () => el.classList.add('is-down')
     const onUp = () => el.classList.remove('is-down')
-    const onEnter = () => el.classList.remove('is-hidden')
     const onLeave = () => el.classList.add('is-hidden')
 
     // Initialize at center to avoid jump
-    gsap.set(el, { x: window.innerWidth / 2, y: window.innerHeight / 2 })
+    el.style.left = (window.innerWidth / 2) + 'px'
+    el.style.top = (window.innerHeight / 2) + 'px'
 
-    window.addEventListener('pointermove', onMove, { passive: true })
-    window.addEventListener('pointerdown', onDown, { passive: true })
-    window.addEventListener('pointerup', onUp, { passive: true })
-    window.addEventListener('mouseenter', onEnter)
-    window.addEventListener('mouseleave', onLeave)
+    // Use mousemove instead of pointermove for better compatibility
+    document.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mousedown', onDown, { passive: true })
+    document.addEventListener('mouseup', onUp, { passive: true })
+    document.addEventListener('mouseleave', onLeave, { passive: true })
 
     return () => {
-      window.removeEventListener('pointermove', onMove)
-      window.removeEventListener('pointerdown', onDown)
-      window.removeEventListener('pointerup', onUp)
-      window.removeEventListener('mouseenter', onEnter)
-      window.removeEventListener('mouseleave', onLeave)
+      document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('mouseup', onUp)
+      document.removeEventListener('mouseleave', onLeave)
     }
   }, [isFinePointer])
 
