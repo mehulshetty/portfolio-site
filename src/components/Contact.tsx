@@ -1,8 +1,20 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from '../lib/gsap'
 
 export default function Contact() {
   const rootRef = useRef<HTMLElement | null>(null)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    setSubmitted(true)
+  }
 
   useLayoutEffect(() => {
     const root = rootRef.current
@@ -33,17 +45,27 @@ export default function Contact() {
         </div>
         <div className="pricing-cta">
           <div className="big-circle">
-            <form className="contact-form">
-              <div className="form-field">
-                <label htmlFor="name" className="sr-only">Your name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required />
+            {submitted ? (
+              <div className="contact-form">
+                <p className="success-message">Thanks for reaching out! I'll get back to you soon.</p>
               </div>
-              <div className="form-field">
-                <label htmlFor="message" className="sr-only">Your message</label>
-                <textarea id="message" name="message" placeholder="Your message" rows={4} required></textarea>
-              </div>
-              <button type="submit" className="submit-btn">Send Message</button>
-            </form>
+            ) : (
+              <form className="contact-form" action="https://formspree.io/f/xykpaawv" method="POST" onSubmit={handleSubmit}>
+                <div className="form-field">
+                  <label htmlFor="name" className="sr-only">Your name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="email" className="sr-only">Your email (optional)</label>
+                  <input type="email" id="email" name="email" placeholder="Your email (optional)" />
+                </div>
+                <div className="form-field">
+                  <label htmlFor="message" className="sr-only">Your message</label>
+                  <textarea id="message" name="message" placeholder="Your message" rows={4} required></textarea>
+                </div>
+                <button type="submit" className="submit-btn">Send Message</button>
+              </form>
+            )}
           </div>
         </div>
       </div>

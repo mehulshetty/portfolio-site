@@ -14,18 +14,18 @@ interface ExperienceData {
 
 const experiences: ExperienceData[] = [
   {
+    company: 'USC InfoLab',
+    title: 'ML Researcher',
+    description: 'Developed a transformer-based model for POI prediction, achieving 96% state-of-the-art accuracy. Also led a team using Genomic Deep Learning for Acute Myeloid Leukemia (AML) detection, reaching 92% accuracy.',
+    backgroundColor: 'var(--rm-orange)',
+    illustrationType: 'ml-research'
+  },
+  {
     company: 'adMarketplace',
     title: 'Data Engineering Intern',
     description: 'Built a real-time anomaly detection pipeline using Databricks and Spark, reducing false positives. Won the company-wide hackathon by creating an MMOE model that improved ad relevance scoring.',
     backgroundColor: 'var(--rm-blue)',
     illustrationType: 'data-engineering'
-  },
-  {
-    company: 'University of Southern California',
-    title: 'ML Researcher',
-    description: 'Developed a transformer-based model for POI prediction, achieving 96% state-of-the-art accuracy. Also led a team using Genomic Deep Learning for Acute Myeloid Leukemia (AML) detection, reaching 92% accuracy.',
-    backgroundColor: 'var(--rm-orange)',
-    illustrationType: 'ml-research'
   },
   {
     company: 'IBM',
@@ -74,15 +74,9 @@ export default function Experience() {
             opacity: 1
           })
         }
-        if (illustrationBox1) {
-          gsap.set(illustrationBox1, { display: 'none' })
-        }
-        if (illustrationBox2) {
-          gsap.set(illustrationBox2, { display: 'none' })
-        }
-        if (illustrationBox3) {
-          gsap.set(illustrationBox3, { display: 'none' })
-        }
+        if (illustrationBox1) gsap.set(illustrationBox1, { display: 'none' })
+        if (illustrationBox2) gsap.set(illustrationBox2, { display: 'none' })
+        if (illustrationBox3) gsap.set(illustrationBox3, { display: 'none' })
         setIsInitialized(true)
         return
       }
@@ -97,38 +91,41 @@ export default function Experience() {
         })
       }
 
-      // Initialize illustration boxes with off-screen positions for dramatic sliding
+      // Initialize illustration boxes with off-screen positions
+      // Box 1: Bottom Right (starts off-screen right)
       if (illustrationBox1) {
         gsap.set(illustrationBox1, {
           position: 'absolute',
-          right: '-20%',
-          bottom: '6%',
+          right: '-30%',
+          bottom: '10%',
           opacity: 0,
-          transform: 'translate(0, 0)',
-          left: 'auto',
-          top: 'auto'
+          scale: 0.8,
+          rotation: 10,
+          transformOrigin: 'center center'
         })
       }
+      // Box 2: Top Left (starts off-screen left)
       if (illustrationBox2) {
         gsap.set(illustrationBox2, {
           position: 'absolute',
-          left: '-20%',
-          top: '6%',
+          left: '-30%',
+          top: '10%',
           opacity: 0,
-          transform: 'translate(0, 0)',
-          right: 'auto',
-          bottom: 'auto'
+          scale: 0.8,
+          rotation: -10,
+          transformOrigin: 'center center'
         })
       }
+      // Box 3: Top Right (starts off-screen right)
       if (illustrationBox3) {
         gsap.set(illustrationBox3, {
           position: 'absolute',
-          right: '-20%',
-          top: '6%',
+          right: '-30%',
+          top: '10%',
           opacity: 0,
-          transform: 'translate(0, 0)',
-          left: 'auto',
-          bottom: 'auto'
+          scale: 0.8,
+          rotation: 10,
+          transformOrigin: 'center center'
         })
       }
 
@@ -137,20 +134,16 @@ export default function Experience() {
 
     // Check if window is already loaded
     if (document.readyState === 'complete') {
-      // Page already loaded, initialize immediately with a small delay
       requestAnimationFrame(() => {
         setTimeout(initializeElements, 300)
       })
     } else {
-      // Wait for window load event
       const handleLoad = () => {
         requestAnimationFrame(() => {
           setTimeout(initializeElements, 300)
         })
       }
-
       window.addEventListener('load', handleLoad)
-
       return () => {
         window.removeEventListener('load', handleLoad)
       }
@@ -171,7 +164,6 @@ export default function Experience() {
     // Simplified scrolling for mobile
     const isMobile = window.innerWidth <= 700
     if (isMobile) {
-      // Create simpler scroll trigger for mobile that just changes the experience
       const mobileTrigger = ScrollTrigger.create({
         trigger: container,
         start: 'top top',
@@ -180,7 +172,6 @@ export default function Experience() {
         scrub: 2,
         onUpdate: (self) => {
           const progress = self.progress
-          // Determine which experience to show based on scroll progress
           let currentPhase = 0
           if (progress > 0.35 && progress <= 0.70) {
             currentPhase = 1
@@ -189,11 +180,10 @@ export default function Experience() {
           }
           setCurrentExperience(currentPhase)
 
-          // Update background color
           if (container) {
             gsap.to(container, {
               backgroundColor: experiences[currentPhase].backgroundColor,
-              duration: 0.3
+              duration: 0.5
             })
           }
         }
@@ -204,32 +194,28 @@ export default function Experience() {
       }
     }
 
-    // Additional delay to ensure layout is completely stable
+    // Desktop ScrollTrigger setup
     const setupScrollTrigger = () => {
-      // Clear any existing ScrollTriggers for this specific container only
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === container) {
           trigger.kill()
         }
       })
 
-      // Refresh ScrollTrigger to recalculate positions
       ScrollTrigger.refresh()
 
-      // Create the main scroll trigger only after everything is ready
       const mainTrigger = ScrollTrigger.create({
         trigger: container,
         start: 'top top',
-        end: '+=3600vh',
+        end: '+=4000vh', // Increased scroll distance for slower pace
         pin: true,
-        scrub: 1.5,
-        anticipatePin: 1, // Helps with pin calculations
+        scrub: 3, // Increased scrub for smoother, heavier feel
+        anticipatePin: 1,
         refreshPriority: -1,
-        invalidateOnRefresh: true, // Recalculate on refresh
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress
 
-          // Determine current phase based on progress - must match handlePhaseTransitions boundaries
           let currentPhase = 0
           if (progress > 0.35 && progress <= 0.70) {
             currentPhase = 1
@@ -237,17 +223,14 @@ export default function Experience() {
             currentPhase = 2
           }
 
-          // Always update current experience to ensure consistency
           setCurrentExperience(currentPhase)
 
-          // Smooth background color transition
           gsap.to(container, {
             backgroundColor: experiences[currentPhase].backgroundColor,
-            duration: 0.8,
+            duration: 1.2,
             ease: 'power2.out'
           })
 
-          // Handle positioning based on progress
           handlePhaseTransitions(progress, {
             experienceCard,
             illustrationBox1,
@@ -256,16 +239,13 @@ export default function Experience() {
           })
         },
         onRefresh: () => {
-          // Reset to initial state on refresh
           if (illustrationBox1) {
             gsap.set(illustrationBox1, {
               opacity: 0,
-              position: 'absolute',
-              right: '-20%',
-              bottom: '6%',
-              left: 'auto',
-              top: 'auto',
-              transform: 'translate(0, 0)'
+              right: '-30%',
+              bottom: '10%',
+              scale: 0.8,
+              rotation: 10
             })
           }
         }
@@ -274,21 +254,16 @@ export default function Experience() {
       return mainTrigger
     }
 
-    // Wait for layout to be completely stable before setting up ScrollTrigger
     const scrollTimer = setTimeout(() => {
       const trigger = setupScrollTrigger()
-
-      // Final refresh after setup
       setTimeout(() => {
         ScrollTrigger.refresh()
       }, 100)
-
       return trigger
-    }, 500) // Longer delay for initial setup
+    }, 500)
 
     return () => {
       clearTimeout(scrollTimer)
-      // Only kill ScrollTriggers associated with this component
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === container) {
           trigger.kill()
@@ -312,61 +287,45 @@ export default function Experience() {
     if (progress <= 0.35) {
       const phaseProgress = progress / 0.35
 
-      // Experience card in center
+      // Card stays relatively centered but breathes slightly
       if (experienceCard) {
         gsap.set(experienceCard, {
           left: '50%',
           top: '50%',
-          transform: 'translate(-50%, -50%)'
+          transform: `translate(-50%, -50%) scale(${1 + phaseProgress * 0.05})`
         })
       }
 
-      // First illustration box slides in from off-screen right to bottom right
+      // Box 1 slides in from right with rotation
       if (illustrationBox1) {
-        const slideProgress = Math.min(1, phaseProgress * 2)
+        const slideProgress = Math.min(1, phaseProgress * 2.5) // Faster entry
         gsap.set(illustrationBox1, {
-          position: 'absolute',
-          right: `${-20 + (26 * slideProgress)}%`, // Slides from -20% to 6%
-          bottom: '6%',
-          left: 'auto',
-          top: 'auto',
+          right: `${-30 + (35 * slideProgress)}%`, // Ends at 5%
+          bottom: '10%',
           opacity: slideProgress,
-          transform: 'translate(0, 0)'
+          scale: 0.8 + (0.2 * slideProgress),
+          rotation: 10 - (10 * slideProgress) // Rotates to 0
         })
       }
 
-      // Hide other boxes off-screen
-      if (illustrationBox2) {
-        gsap.set(illustrationBox2, {
-          position: 'absolute',
-          left: '-20%',
-          top: '6%',
-          right: 'auto',
-          bottom: 'auto',
-          opacity: 0,
-          transform: 'translate(0, 0)'
-        })
-      }
-      if (illustrationBox3) {
-        gsap.set(illustrationBox3, {
-          position: 'absolute',
-          right: '-20%',
-          top: '6%',
-          left: 'auto',
-          bottom: 'auto',
-          opacity: 0,
-          transform: 'translate(0, 0)'
-        })
-      }
+      // Hide others
+      if (illustrationBox2) gsap.set(illustrationBox2, { opacity: 0, left: '-30%' })
+      if (illustrationBox3) gsap.set(illustrationBox3, { opacity: 0, right: '-30%' })
     }
     // Phase 2: 35% - 70% (USC)
     else if (progress <= 0.70) {
       const phaseProgress = (progress - 0.35) / 0.35
 
-      // Experience card moves toward bottom right (to avoid overlapping with top-left illustration box)
+      // Card moves in a curved path to bottom-right
       if (experienceCard) {
-        const leftPos = 50 + (phaseProgress * 25) // Move right instead of left
-        const topPos = 50 + (phaseProgress * 25)  // Move down
+        // Bezier-like curve calculation
+        const t = phaseProgress
+        // Start: 50, 50
+        // Control: 60, 40
+        // End: 70, 65
+        const leftPos = 50 * (1 - t) * (1 - t) + 60 * 2 * (1 - t) * t + 70 * t * t
+        const topPos = 50 * (1 - t) * (1 - t) + 40 * 2 * (1 - t) * t + 65 * t * t
+
         gsap.set(experienceCard, {
           left: `${leftPos}%`,
           top: `${topPos}%`,
@@ -374,54 +333,44 @@ export default function Experience() {
         })
       }
 
-      // First box slides out to the right and up
+      // Box 1 exits down and right
       if (illustrationBox1) {
         gsap.set(illustrationBox1, {
-          position: 'absolute',
-          right: `${6 - (phaseProgress * 26)}%`, // Slides from 6% to -20%
-          bottom: `${6 + phaseProgress * 80}%`, // Also moves up
-          left: 'auto',
-          top: 'auto',
-          opacity: Math.max(0, 1 - phaseProgress * 1.5),
-          transform: 'translate(0, 0)'
+          right: `${5 - (phaseProgress * 35)}%`,
+          bottom: `${10 - (phaseProgress * 20)}%`,
+          opacity: 1 - phaseProgress * 2,
+          scale: 1 - (0.2 * phaseProgress),
+          rotation: phaseProgress * -10
         })
       }
 
-      // Second box slides in from off-screen left to top left
+      // Box 2 slides in from left to top-left
       if (illustrationBox2) {
-        const slideProgress = Math.min(1, phaseProgress * 1.5)
+        const slideProgress = Math.min(1, phaseProgress * 2)
         gsap.set(illustrationBox2, {
-          position: 'absolute',
-          left: `${-20 + (26 * slideProgress)}%`, // Slides from -20% to 6%
-          top: '6%',
-          right: 'auto',
-          bottom: 'auto',
+          left: `${-30 + (35 * slideProgress)}%`, // Ends at 5%
+          top: '10%',
           opacity: slideProgress,
-          transform: 'translate(0, 0)'
+          scale: 0.8 + (0.2 * slideProgress),
+          rotation: -10 + (10 * slideProgress) // Rotates to 0
         })
       }
 
-      // Third box stays hidden off-screen
-      if (illustrationBox3) {
-        gsap.set(illustrationBox3, {
-          position: 'absolute',
-          right: '-20%',
-          top: '6%',
-          left: 'auto',
-          bottom: 'auto',
-          opacity: 0,
-          transform: 'translate(0, 0)'
-        })
-      }
+      if (illustrationBox3) gsap.set(illustrationBox3, { opacity: 0, right: '-30%' })
     }
     // Phase 3: 70% - 100% (IBM)
     else {
       const phaseProgress = (progress - 0.70) / 0.30
 
-      // Experience card moves to final position (bottom left to balance the layout)
+      // Card moves in a curved path to bottom-left
       if (experienceCard) {
-        const leftPos = 75 - (phaseProgress * 45) // Move from bottom-right to bottom-left
-        const topPos = 75 - (phaseProgress * 15)  // Move up slightly
+        // Start: 70, 65
+        // Control: 50, 80
+        // End: 30, 65
+        const t = phaseProgress
+        const leftPos = 70 * (1 - t) * (1 - t) + 50 * 2 * (1 - t) * t + 30 * t * t
+        const topPos = 65 * (1 - t) * (1 - t) + 80 * 2 * (1 - t) * t + 65 * t * t
+
         gsap.set(experienceCard, {
           left: `${leftPos}%`,
           top: `${topPos}%`,
@@ -429,43 +378,28 @@ export default function Experience() {
         })
       }
 
-      // First box completely hidden off-screen
-      if (illustrationBox1) {
-        gsap.set(illustrationBox1, {
-          position: 'absolute',
-          right: '-20%',
-          bottom: '6%',
-          left: 'auto',
-          top: 'auto',
-          opacity: 0,
-          transform: 'translate(0, 0)'
-        })
-      }
+      if (illustrationBox1) gsap.set(illustrationBox1, { opacity: 0 })
 
-      // Second box slides out to the left as phase progresses
+      // Box 2 exits up and left
       if (illustrationBox2) {
         gsap.set(illustrationBox2, {
-          position: 'absolute',
-          left: `${6 - (phaseProgress * 13)}%`, // Gradually slides left from 6% to -7%
-          top: `${6 + phaseProgress * 10}%`,
-          right: 'auto',
-          bottom: 'auto',
-          opacity: Math.max(0.3, 1 - phaseProgress * 0.7), // Fades out gradually
-          transform: 'translate(0, 0)'
+          left: `${5 - (phaseProgress * 35)}%`,
+          top: `${10 - (phaseProgress * 20)}%`,
+          opacity: 1 - phaseProgress * 2,
+          scale: 1 - (0.2 * phaseProgress),
+          rotation: phaseProgress * 10
         })
       }
 
-      // Third box slides in from off-screen right to top right
+      // Box 3 slides in from right to top-right
       if (illustrationBox3) {
-        const slideProgress = Math.min(1, phaseProgress * 1.5)
+        const slideProgress = Math.min(1, phaseProgress * 2)
         gsap.set(illustrationBox3, {
-          position: 'absolute',
-          right: `${-20 + (26 * slideProgress)}%`, // Slides from -20% to 6%
-          top: '6%',
-          left: 'auto',
-          bottom: 'auto',
+          right: `${-30 + (35 * slideProgress)}%`, // Ends at 5%
+          top: '10%',
           opacity: slideProgress,
-          transform: 'translate(0, 0)'
+          scale: 0.8 + (0.2 * slideProgress),
+          rotation: 10 - (10 * slideProgress)
         })
       }
     }

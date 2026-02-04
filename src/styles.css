@@ -879,6 +879,18 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
     box-shadow: 0 4px 0 #cc4700, 0 6px 12px rgba(255,90,0,.15);
 }
 
+.success-message {
+    background: var(--rm-orange);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 6px 0 #cc4700, 0 10px 20px rgba(255,90,0,.2);
+    line-height: 1.4;
+}
+
 /* Experience Intro Banner - Standalone Section */
 .experience-intro-section {
   padding: 3rem 0;

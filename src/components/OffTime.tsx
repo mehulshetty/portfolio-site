@@ -91,8 +91,8 @@ export default function OffTime() {
             <h3>Running</h3>
             <div className="content-section">
               <div className="stat-highlight">
-                <span className="stat-number">58</span>
-                <span className="stat-label">miles in September</span>
+                <span className="stat-number">7</span>
+                <span className="stat-label">miles in February</span>
               </div>
             </div>
             <div className="content-divider"></div>
@@ -230,12 +230,12 @@ export default function OffTime() {
             <div className="reading-text">
               <h3>Reading</h3>
               <div className="content-section">
-                <span className="section-label">October Reads</span>
+                <span className="section-label">February Reads</span>
               </div>
               <div className="book-info">
                 <div className="book-item">
                   <span className="book-category-label">Fiction</span>
-                  <span className="book-title-text">I Who Have Never Known Men</span>
+                  <span className="book-title-text">Death of the Author</span>
                 </div>
                 <div className="book-item">
                   <span className="book-category-label">Non-Fiction</span>
@@ -244,7 +244,7 @@ export default function OffTime() {
               </div>
             </div>
             <div className="reading-images">
-              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/iWhoHaveKnownMen.jpg.webp`} alt="I Who Have Never Known Men" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/deathOfTheAuthor.jpeg`} alt="Death of the Author" loading="lazy" />
               <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/whatIsReal.jpg`} alt="What Is Real?" loading="lazy" />
             </div>
           </div>
