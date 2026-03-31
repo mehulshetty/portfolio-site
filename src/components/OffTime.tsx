@@ -91,8 +91,8 @@ export default function OffTime() {
             <h3>Running</h3>
             <div className="content-section">
               <div className="stat-highlight">
-                <span className="stat-number">7</span>
-                <span className="stat-label">miles in February</span>
+                <span className="stat-number">58</span>
+                <span className="stat-label">miles in March</span>
               </div>
             </div>
             <div className="content-divider"></div>
