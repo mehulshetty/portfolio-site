@@ -230,22 +230,22 @@ export default function OffTime() {
             <div className="reading-text">
               <h3>Reading</h3>
               <div className="content-section">
-                <span className="section-label">February Reads</span>
+                <span className="section-label">April Reads</span>
               </div>
               <div className="book-info">
                 <div className="book-item">
                   <span className="book-category-label">Fiction</span>
-                  <span className="book-title-text">Death of the Author</span>
+                  <span className="book-title-text">Snow Crash</span>
                 </div>
                 <div className="book-item">
                   <span className="book-category-label">Non-Fiction</span>
-                  <span className="book-title-text">What Is Real?: The Unfinished Quest for the Meaning of Quantum Physics</span>
+                  <span className="book-title-text">More Everything Forever</span>
                 </div>
               </div>
             </div>
             <div className="reading-images">
-              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/deathOfTheAuthor.jpeg`} alt="Death of the Author" loading="lazy" />
-              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/whatIsReal.jpg`} alt="What Is Real?" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/snowCrash.jpg`} alt="Snow Crash" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL.slice(0, -1) : import.meta.env.BASE_URL}/assets/moreEverythingForever.webp`} alt="More Everything Forever" loading="lazy" />
             </div>
           </div>
         </article>
