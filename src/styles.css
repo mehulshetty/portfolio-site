@@ -1,5 +1,4 @@
-/* Import artistic fonts from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Audiowide:wght@400&family=Rubik+Glitch:wght@400&family=Pixelify+Sans:wght@400..700&family=Amarante:wght@400&family=Black+Ops+One:wght@400&display=swap');
+/* (font imports removed — artistic name styles no longer used) */
 
 /* Readymag-like portfolio page (educational demo)
    -------------------------------------------------- */
@@ -201,217 +200,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
 .hl--yellow { background: var(--rm-yellow); color: var(--rm-orange); }
 .hl--blue { background: var(--rm-blue); color: #fff; }
 
-/* Artistic Name Styles - Base transition for smooth changes */
-.hl {
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.name-style-1 {
-    background: var(--rm-yellow);
-    color: var(--rm-orange);
-}
-
-.name-style-2 {
-    background: #000;
-    color: #00ff88;
-    font-weight: 700;
-    position: relative;
-    font-size: 1.2em;
-    letter-spacing: 0.08em;
-    text-shadow: 0 0 5px #00ff88,
-                 0 0 10px #00ff88,
-                 0 0 15px #00ff88;
-    filter: blur(0.3px);
-}
-
-.name-style-2::before {
-    content: 'M E H U L';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: rgba(0, 255, 136, 0.3);
-    letter-spacing: 0.5em;
-    animation: data-stream 1.5s infinite;
-    z-index: -1;
-}
-
-@keyframes data-stream {
-    0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.3; }
-    50% { transform: scaleY(0.8) scaleX(1.2); opacity: 0.6; }
-}
-
-.name-style-3 {
-    background: #1a1a2e;
-    color: #ff6b6b;
-    font-weight: 800;
-    position: relative;
-    font-size: 1.1em;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 2px solid #ff6b6b;
-    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3),
-                inset 0 0 20px rgba(255, 107, 107, 0.1);
-}
-
-.name-style-3::before {
-    content: '< MEHUL />';
-    position: absolute;
-    top: -25px;
-    left: -10px;
-    font-size: 0.6em;
-    color: rgba(255, 107, 107, 0.6);
-    font-family: 'Courier New', monospace;
-    animation: code-blink 2s infinite;
-}
-
-.name-style-3::after {
-    content: '{ executing... }';
-    position: absolute;
-    bottom: -25px;
-    right: -10px;
-    font-size: 0.6em;
-    color: rgba(255, 107, 107, 0.6);
-    font-family: 'Courier New', monospace;
-    animation: code-blink 2s infinite reverse;
-}
-
-@keyframes code-blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.3; }
-}
-
-.name-style-4 {
-    background: #000;
-    color: #00ff41;
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    box-shadow: inset 0 0 0 2px #00ff41,
-                0 0 20px rgba(0, 255, 65, 0.6);
-    border-radius: 0;
-    position: relative;
-}
-
-.name-style-4::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 1px,
-        rgba(0, 255, 65, 0.1) 2px
-    );
-    pointer-events: none;
-}
-
-.name-style-5 {
-    background: linear-gradient(45deg, #ff0080, #0080ff);
-    color: #fff;
-    position: relative;
-    animation: glitch-anim 3s infinite;
-    text-shadow: 2px 0 #ff0080, -2px 0 #0080ff;
-}
-
-.name-style-5::before {
-    content: 'Mehul';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    color: #ff0080;
-    animation: glitch-offset 0.5s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-}
-
-@keyframes glitch-anim {
-    0%, 96%, 100% { transform: translate(0); }
-    2% { transform: translate(2px, -2px); }
-    4% { transform: translate(-2px, 2px); }
-    6% { transform: translate(2px, 2px); }
-}
-
-@keyframes glitch-offset {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-2px); }
-    40% { transform: translateX(2px); }
-    60% { transform: translateX(-2px); }
-    80% { transform: translateX(2px); }
-}
-
-.name-style-6 {
-    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-    color: transparent;
-    font-weight: 900;
-    font-size: 1.3em;
-    position: relative;
-    background-clip: text;
-    -webkit-background-clip: text;
-    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.3));
-    transform: perspective(300px) rotateX(25deg) rotateY(-15deg);
-    text-shadow: none;
-}
-
-.name-style-6::before {
-    content: 'MEHUL';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: rgba(102, 126, 234, 0.4);
-    z-index: -1;
-    transform: perspective(300px) rotateX(25deg) rotateY(-15deg);
-}
-
-.name-style-6::after {
-    content: 'MEHUL';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: rgba(118, 75, 162, 0.3);
-    z-index: -2;
-    transform: perspective(300px) rotateX(25deg) rotateY(-15deg);
-}
-
-.name-style-7 {
-    background: transparent;
-    color: #2d3748;
-    font-weight: 300;
-    font-size: 1.4em;
-    position: relative;
-    letter-spacing: 0.2em;
-    text-shadow: 1px 1px 0 #cbd5e0,
-                 2px 2px 0 #a0aec0,
-                 3px 3px 0 #718096,
-                 4px 4px 8px rgba(0, 0, 0, 0.3);
-    transform: rotateX(60deg) rotateY(-10deg);
-    transform-style: preserve-3d;
-}
-
-.name-style-7::before {
-    content: 'MEHUL';
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #e2e8f0;
-    transform: translateZ(-10px) rotateX(-60deg);
-    filter: blur(1px);
-    opacity: 0.8;
-}
-
 /* Hero */
-.hero__sub {
-    color: var(--rm-muted);
-    font-size: 1.05rem;
-    margin-top: 1rem;
-}
 .cta-row { margin-top: 2rem; }
 .cta-big {
     display: inline-flex;
@@ -419,71 +208,62 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
     justify-content: center;
     font-weight: 800;
     letter-spacing: .2px;
-    padding: 1.25rem 3.4rem; /* wider & bigger */
+    padding: 1.25rem 3.4rem;
     font-size: 1.1rem;
     border-radius: var(--radius-pill);
     border: 2px solid var(--rm-orange);
     color: var(--rm-orange);
     text-decoration: none;
-    background: #fff; /* simple outline button by default */
+    background: #fff;
     box-shadow: none;
     transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
 }
 .cta-big:hover { background: var(--rm-orange); color: #fff; }
 .cta-big:focus-visible { outline: 3px solid rgba(12,94,255,.4); outline-offset: 2px; }
 
-/* Center hero content like the reference */
-.hero .container { display: grid; justify-items: center; text-align: center; row-gap: .4rem; position: relative; z-index: 2; padding-top: var(--header-h, 64px); }
-.hero .cta-row { display: flex; justify-content: center; margin-top: .35rem; }
-.hero .hero__title { margin: 0; }
-
 .hero {
     position: relative;
-    margin-top: 0; /* span full viewport so edges match screen edges */
+    margin-top: 0;
     padding: 0;
     overflow: hidden;
-    min-height: 100vh;
-    display: grid;
-    place-content: center; /* center in both dimensions */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.hero-collage {
+.hero-grid-canvas {
+    flex: 1 1 0%;
+    min-height: 0;
+    width: 100%;
+}
+.hero-grid-canvas canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
     pointer-events: none;
-    position: absolute;
-    inset: 0;
-    z-index: 1; /* behind text */
+    z-index: 4;
 }
+.hero-overlay .cta-big { pointer-events: auto; }
+.hero-overlay .cta-row { margin-top: .75rem; }
 
-.card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 40px 60px rgba(0,0,0,.16), 0 4px 18px rgba(0,0,0,.1);
-    /* Final collage positions use translate from center via CSS vars */
-    --tx: 0px; /* x offset from center */
-    --ty: 0px; /* y offset from center */
-    --rot: 0deg;
-    aspect-ratio: 4 / 3;
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Final collage layout (bigger cards, centered composition) */
-.c1 { width: clamp(260px, 36vw, 640px); --tx: -28vw; --ty: -6vh; --rot: -4deg; z-index: 2; }
-.c2 { width: clamp(220px, 28vw, 520px); --tx: 20vw;  --ty: -14vh; --rot:  3deg; z-index: 3; }
-.c3 { width: clamp(200px, 26vw, 500px); --tx: 12vw;  --ty:  18vh; --rot: -2deg; z-index: 4; }
-.c4 { width: clamp(240px, 32vw, 560px); --tx: -14vw; --ty:  16vh; --rot:  5deg; z-index: 1; }
-.c5 { width: clamp(220px, 30vw, 540px); --tx:  2vw;  --ty:  -2vh; --rot: -3deg; z-index: 5; }
-
-.scrim-bottom {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 140px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+.hero__subtitle {
+    font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
+    font-size: clamp(1.1rem, 1.6vw + .4rem, 1.6rem);
+    font-weight: 600;
+    color: var(--rm-muted);
+    margin: 0;
+    letter-spacing: .01em;
 }
 
 /* Research section */
@@ -1981,8 +1761,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
 
 @media (max-width: 700px) {
     .pill-nav { display: none; }
-    .hero .container { width: 92vw; }
-    .c1, .c2, .c3, .c4, .c5 { display: none; } /* simplify collage on tiny screens */
+    .hero-overlay { padding-bottom: 2rem; }
     .examples-grid { grid-template-columns: 1fr; }
     .action-grid { grid-template-columns: 1fr; }
 
@@ -2058,7 +1837,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
         font-size: clamp(1.5rem, 2.5vw + 1rem, 2.5rem);
     }
 
-    .hero__sub {
+    .hero__subtitle {
         font-size: 0.95rem;
     }
 
@@ -2238,11 +2017,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
 @media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
     /* Reduce vertical spacing in landscape */
     .hero {
-        min-height: 100vh;
-    }
-
-    .hero .container {
-        padding-top: calc(var(--header-h, 64px) / 2);
+        height: 100vh;
     }
 
     h1 {
@@ -2278,7 +2053,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
 
 /* Motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .card { animation: none !important; }
+    * { animation: none !important; }
 }
 
 /* Data Engineering Dashboard Styles */
@@ -4084,7 +3859,7 @@ h2 { font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height: 1.1; }
         font-size: clamp(1.3rem, 2.2vw + 1rem, 2rem);
     }
 
-    .hero__sub {
+    .hero__subtitle {
         font-size: 0.9rem;
     }
 
